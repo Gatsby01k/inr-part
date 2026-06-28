@@ -5,29 +5,23 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Surfaces — deep navy / graphite / near-black
-        ink: "#070b12",
-        panel: "#0b1120",
-        slatecard: "#0e1525",
-        line: "#1b2638",
-        // Primary accent — emerald / teal
-        brand: "#10b981",
-        brandSoft: "#34d399",
-        teal: "#14b8a6",
-        // Secondary accent — electric blue
-        electric: "#3b82f6",
-        electricSoft: "#60a5fa",
-        // Review / reserve notices — soft amber
-        amberSoft: "#fbbf24",
+        // Custom flat tokens — chosen NOT to collide with Tailwind's default
+        // color scales (blue / sky / emerald / amber / slate are used directly).
+        ink: "#0F172A", // primary text
+        muted: "#475569", // secondary text
+        brand: "#2563EB", // primary blue
+        brandDeep: "#1D4ED8", // deep blue
+        canvas: "#F5F8FF", // page background
+        canvas2: "#EEF4FF", // alt background
       },
       boxShadow: {
-        glow: "0 0 50px rgba(16, 185, 129, 0.16)",
-        electric: "0 0 50px rgba(59, 130, 246, 0.14)",
-        card: "0 24px 70px rgba(2, 6, 15, 0.55)",
+        glass: "0 20px 70px rgba(37, 99, 235, 0.10)",
+        glassSoft: "0 10px 40px rgba(37, 99, 235, 0.08)",
+        lift: "0 24px 60px rgba(37, 99, 235, 0.16)",
+        btn: "0 10px 24px rgba(37, 99, 235, 0.28)",
       },
       backgroundImage: {
-        "radial-emerald": "radial-gradient(circle at 25% 0%, rgba(16,185,129,0.12), transparent 34rem)",
-        "radial-electric": "radial-gradient(circle at 85% 12%, rgba(59,130,246,0.10), transparent 30rem)",
+        "blue-sheen": "linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0))",
       },
       fontFamily: {
         sans: ["var(--font-inter)", "Inter", "ui-sans-serif", "system-ui", "sans-serif"],

@@ -16,8 +16,8 @@ export default function BeforeAfter() {
       <div className="grid items-stretch gap-4 lg:grid-cols-[1fr_auto_1fr]">
         <CompareCard title="Before" items={beforeItems} variant="before" />
         <div className="flex items-center justify-center">
-          <div className="flex h-11 w-11 items-center justify-center rounded-full border border-line bg-panel/80">
-            <ArrowRight className="h-5 w-5 text-brandSoft max-lg:rotate-90" />
+          <div className="flex h-11 w-11 items-center justify-center rounded-full bg-brand text-white shadow-btn">
+            <ArrowRight className="h-5 w-5 max-lg:rotate-90" />
           </div>
         </div>
         <CompareCard title="After" items={afterItems} variant="after" />
@@ -34,22 +34,22 @@ function CompareCard({ title, items, variant }: { title: string; items: string[]
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-70px" }}
       transition={{ duration: 0.5 }}
-      className={`rounded-[1.5rem] border p-6 ${
-        after ? "border-brand/30 bg-brand/[0.06] shadow-glow" : "border-line bg-white/[0.02]"
+      className={`rounded-3xl p-6 ${
+        after ? "border-2 border-emerald-200 bg-gradient-to-b from-emerald-50 to-white shadow-glassSoft" : "glass"
       }`}
     >
-      <h3 className={`text-xl font-semibold ${after ? "text-white" : "text-slate-300"}`}>{title}</h3>
+      <h3 className={`text-xl font-semibold ${after ? "text-ink" : "text-muted"}`}>{title}</h3>
       <ul className="mt-5 space-y-2.5">
         {items.map((item) => (
           <li key={item} className="flex items-center gap-3 text-sm">
             <span
               className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full ${
-                after ? "bg-brand/15 text-brandSoft" : "bg-white/5 text-slate-500"
+                after ? "bg-emerald-100 text-emerald-600" : "bg-slate-100 text-slate-400"
               }`}
             >
               {after ? <Check className="h-3.5 w-3.5" /> : <X className="h-3.5 w-3.5" />}
             </span>
-            <span className={after ? "text-slate-100" : "text-slate-400"}>{item}</span>
+            <span className={after ? "font-medium text-ink" : "text-muted"}>{item}</span>
           </li>
         ))}
       </ul>

@@ -16,18 +16,16 @@ export default function FAQ() {
           return (
             <div
               key={item.q}
-              className={`overflow-hidden rounded-2xl border transition ${
-                isOpen ? "border-brand/30 bg-brand/[0.04]" : "border-line bg-white/[0.02]"
-              }`}
+              className={`glass overflow-hidden rounded-2xl transition ${isOpen ? "ring-1 ring-brand/20" : ""}`}
             >
               <button
                 type="button"
                 onClick={() => setOpen(isOpen ? -1 : index)}
                 className="flex w-full items-center justify-between gap-4 p-5 text-left"
               >
-                <span className="text-sm font-semibold text-white sm:text-base">{item.q}</span>
+                <span className="text-sm font-semibold text-ink sm:text-base">{item.q}</span>
                 <ChevronDown
-                  className={`h-5 w-5 shrink-0 text-brandSoft transition-transform ${isOpen ? "rotate-180" : ""}`}
+                  className={`h-5 w-5 shrink-0 text-brand transition-transform ${isOpen ? "rotate-180" : ""}`}
                 />
               </button>
               <AnimatePresence initial={false}>
@@ -38,7 +36,7 @@ export default function FAQ() {
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.25 }}
                   >
-                    <p className="px-5 pb-5 text-sm leading-7 text-slate-400">{item.a}</p>
+                    <p className="px-5 pb-5 text-sm leading-7 text-muted">{item.a}</p>
                   </motion.div>
                 ) : null}
               </AnimatePresence>

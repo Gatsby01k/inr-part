@@ -6,7 +6,6 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import HowItWorks from "@/components/HowItWorks";
-import LiveTrustPanel from "@/components/LiveTrustPanel";
 import PartnerScore from "@/components/PartnerScore";
 import PortalPreview from "@/components/PortalPreview";
 import Requirements from "@/components/Requirements";
@@ -16,10 +15,9 @@ import WhatYouGet from "@/components/WhatYouGet";
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen overflow-hidden bg-ink text-slate-100">
+    <main className="relative min-h-screen overflow-x-hidden text-ink">
       <Header />
       <Hero />
-      <LiveTrustPanel />
       <WhatYouGet />
       <HowItWorks />
       <ReserveSection />

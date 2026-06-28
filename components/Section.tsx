@@ -29,10 +29,10 @@ export function Section({
         className={`mb-12 max-w-3xl ${aligned ? "mx-auto text-center" : "text-left"}`}
       >
         {eyebrow ? (
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.32em] text-brandSoft">{eyebrow}</p>
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.28em] text-brand">{eyebrow}</p>
         ) : null}
-        <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-[2.7rem] sm:leading-[1.1]">{title}</h2>
-        {copy ? <p className="mt-5 text-base leading-8 text-slate-300/90 sm:text-lg">{copy}</p> : null}
+        <h2 className="text-3xl font-semibold tracking-tight text-ink sm:text-[2.7rem] sm:leading-[1.1]">{title}</h2>
+        {copy ? <p className="mt-5 text-base leading-8 text-muted sm:text-lg">{copy}</p> : null}
       </motion.div>
       {children}
     </section>

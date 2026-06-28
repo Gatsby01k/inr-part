@@ -20,13 +20,13 @@ export default function WhatYouGet() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-70px" }}
             transition={{ duration: 0.45, delay: index * 0.06 }}
-            className="glass card-hover flex flex-col rounded-2xl p-6"
+            className="glass card-hover flex flex-col rounded-3xl p-6"
           >
-            <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl border border-brand/25 bg-brand/10">
-              <Icon className="h-6 w-6 text-brandSoft" />
+            <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-brand to-brandDeep text-white shadow-btn">
+              <Icon className="h-6 w-6" strokeWidth={2} />
             </div>
-            <h3 className="text-lg font-semibold text-white">{title}</h3>
-            <p className="mt-3 text-sm leading-6 text-slate-400">{copy}</p>
+            <h3 className="text-lg font-semibold text-ink">{title}</h3>
+            <p className="mt-3 text-sm leading-6 text-muted">{copy}</p>
           </motion.div>
         ))}
       </div>

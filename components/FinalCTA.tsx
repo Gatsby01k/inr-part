@@ -12,27 +12,28 @@ export default function FinalCTA() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.55 }}
-        className="glass relative overflow-hidden rounded-[2rem] p-8 text-center sm:p-12"
+        className="glass-panel relative overflow-hidden rounded-[2rem] p-8 text-center sm:p-12"
       >
-        <div className="absolute inset-0 bg-radial-emerald opacity-70" />
+        <div className="absolute -right-16 -top-16 h-56 w-56 rounded-full bg-sky-200/40 blur-3xl" />
+        <div className="absolute -bottom-16 -left-16 h-56 w-56 rounded-full bg-blue-200/40 blur-3xl" />
         <div className="relative">
-          <h2 className="mx-auto max-w-3xl text-3xl font-semibold tracking-tight text-white sm:text-[2.6rem] sm:leading-[1.1]">
+          <h2 className="mx-auto max-w-3xl text-3xl font-semibold tracking-tight text-ink sm:text-[2.6rem] sm:leading-[1.1]">
             Ready to apply for private partner access?
           </h2>
-          <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-slate-300/90 sm:text-lg">
+          <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-muted sm:text-lg">
             Submit your partner profile for review and get access to structured workflow tracking, proof history,
             reconciliation visibility and partner score.
           </p>
           <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
             <a
               href="#apply"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-brand px-7 py-3.5 text-sm font-bold text-ink shadow-glow transition hover:bg-brandSoft"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-brand px-7 py-3.5 text-sm font-bold text-white shadow-btn transition hover:-translate-y-0.5 hover:bg-brandDeep hover:shadow-lift"
             >
               Apply for Review <ArrowRight className="h-4 w-4" />
             </a>
             <a
               href="#login"
-              className="inline-flex items-center justify-center rounded-full border border-line bg-white/[0.03] px-7 py-3.5 text-sm font-bold text-white transition hover:border-electric/50 hover:bg-white/[0.06]"
+              className="inline-flex items-center justify-center rounded-full border border-brand/30 bg-white/70 px-7 py-3.5 text-sm font-bold text-brand transition hover:-translate-y-0.5 hover:bg-blue-50"
             >
               Partner Login
             </a>
@@ -41,9 +42,9 @@ export default function FinalCTA() {
             {trustChips.map(({ label, icon: Icon }) => (
               <span
                 key={label}
-                className="inline-flex items-center gap-2 rounded-full border border-line bg-white/[0.03] px-3.5 py-1.5 text-xs font-medium text-slate-300"
+                className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/70 px-3.5 py-1.5 text-xs font-medium text-slate-700"
               >
-                <Icon className="h-3.5 w-3.5 text-brandSoft" />
+                <Icon className="h-3.5 w-3.5 text-brand" />
                 {label}
               </span>
             ))}

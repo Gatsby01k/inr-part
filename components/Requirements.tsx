@@ -21,10 +21,10 @@ export default function Requirements() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.4, delay: index * 0.03 }}
-            className="flex items-center gap-3 rounded-2xl border border-line bg-white/[0.025] p-4"
+            className="glass flex items-center gap-3 rounded-2xl p-4"
           >
-            <CheckCircle2 className="h-5 w-5 shrink-0 text-brandSoft" />
-            <span className="text-sm leading-6 text-slate-200">{item}</span>
+            <CheckCircle2 className="h-5 w-5 shrink-0 text-emerald-500" />
+            <span className="text-sm font-medium leading-6 text-ink">{item}</span>
           </motion.div>
         ))}
       </div>
