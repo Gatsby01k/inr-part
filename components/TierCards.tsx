@@ -23,7 +23,7 @@ export default function TierCards() {
             transition={{ duration: 0.45, delay: index * 0.06 }}
             className={`relative flex flex-col rounded-3xl p-6 ${
               tier.featured
-                ? "border-2 border-brand bg-gradient-to-b from-blue-50 to-white shadow-lift"
+                ? "border-2 border-saffron bg-gradient-to-b from-amber-50 to-white shadow-lift"
                 : "glass"
             }`}
           >

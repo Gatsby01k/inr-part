@@ -45,7 +45,7 @@ export default function ReserveSection() {
               transition={{ duration: 0.45, delay: index * 0.06 }}
               className="glass card-hover flex flex-col rounded-3xl p-6"
             >
-              <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-brand">
+              <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-amber-50 text-brand">
                 <Icon className="h-5 w-5" strokeWidth={2} />
               </div>
               <h4 className="text-base font-semibold text-ink">{title}</h4>

@@ -36,9 +36,9 @@ type StatusMeta = { chip: string; dot: string };
 
 const STATUS_META: Record<LiveStatus, StatusMeta> = {
   Assigned: { chip: "border-slate-200 bg-slate-100 text-slate-600", dot: "bg-slate-400" },
-  Processing: { chip: "border-blue-200 bg-blue-50 text-blue-700", dot: "bg-blue-500" },
+  Processing: { chip: "border-slate-300 bg-slate-100 text-navy", dot: "bg-navy" },
   "Awaiting Proof": { chip: "border-amber-200 bg-amber-50 text-amber-700", dot: "bg-amber-500" },
-  Verified: { chip: "border-sky-200 bg-sky-50 text-sky-700", dot: "bg-sky-500" },
+  Verified: { chip: "border-emerald-200 bg-emerald-50 text-emerald-700", dot: "bg-emerald-500" },
   Matched: { chip: "border-emerald-200 bg-emerald-50 text-emerald-700", dot: "bg-emerald-500" },
   Completed: { chip: "border-emerald-300 bg-emerald-100 text-emerald-800", dot: "bg-emerald-600" },
 };
@@ -213,7 +213,7 @@ export default function LiveTrustPanel() {
       {/* header */}
       <div className="relative flex items-center justify-between">
         <div className="flex items-center gap-2.5">
-          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-50 text-brand">
+          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-amber-50 text-saffron">
             <Activity className="h-5 w-5" strokeWidth={2.2} />
           </span>
           <div>
@@ -232,10 +232,10 @@ export default function LiveTrustPanel() {
 
       {/* metrics — fixed-height tiles */}
       <div className="relative mt-4 grid grid-cols-2 gap-2.5">
-        <Metric icon={<Users className="h-4 w-4" />} label="Partners Online" value={String(metrics.partnersOnline)} sub="active now" live />
-        <Metric icon={<Wallet className="h-4 w-4" />} label="Today's Volume" value={formatCr(metrics.volumeCr)} sub="settled today" />
-        <Metric icon={<Timer className="h-4 w-4" />} label="Avg Completion" value={formatClock(metrics.avgCompletionSec)} sub="per workflow" />
-        <Metric icon={<CheckCircle2 className="h-4 w-4" />} label="Success Rate" value={`${metrics.successRate.toFixed(1)}%`} sub="last 24h" />
+        <Metric icon={<Users className="h-4 w-4" />} accent="text-emerald-600" label="Partners Online" value={String(metrics.partnersOnline)} sub="active now" live />
+        <Metric icon={<Wallet className="h-4 w-4" />} accent="text-saffron" label="Today's Volume" value={formatCr(metrics.volumeCr)} sub="settled today" />
+        <Metric icon={<Timer className="h-4 w-4" />} accent="text-navy" label="Avg Completion" value={formatClock(metrics.avgCompletionSec)} sub="per workflow" />
+        <Metric icon={<CheckCircle2 className="h-4 w-4" />} accent="text-emerald-600" label="Success Rate" value={`${metrics.successRate.toFixed(1)}%`} sub="last 24h" />
       </div>
 
       {/* activity table — fixed slots, fixed row height, no reorder */}
@@ -256,7 +256,7 @@ export default function LiveTrustPanel() {
                 key={idx}
                 style={{ height: ROW_H }}
                 className={`border-b border-slate-100 transition-colors duration-700 last:border-b-0 ${
-                  isFresh ? "bg-blue-50" : "bg-transparent"
+                  isFresh ? "bg-amber-50" : "bg-transparent"
                 }`}
               >
                 {/* lane content keyed by workflow id — remounts (fades in) only when a lane rotates */}
@@ -305,7 +305,7 @@ export default function LiveTrustPanel() {
               whileInView={{ width: "86%" }}
               viewport={{ once: true }}
               transition={{ duration: 1, ease: "easeOut" }}
-              className="h-full rounded-full bg-gradient-to-r from-brand to-sky-400"
+              className="h-full rounded-full bg-gradient-to-r from-saffron to-saffronWarm"
             />
           </div>
           <p className="mt-2 text-[0.68rem] text-muted">Verified tier · 68% to Pro</p>
@@ -316,15 +316,15 @@ export default function LiveTrustPanel() {
           <svg viewBox="0 0 100 30" preserveAspectRatio="none" className="mt-2 h-8 w-full">
             <defs>
               <linearGradient id="sparkFill" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#2563EB" stopOpacity="0.2" />
-                <stop offset="100%" stopColor="#2563EB" stopOpacity="0" />
+                <stop offset="0%" stopColor="#F59E0B" stopOpacity="0.22" />
+                <stop offset="100%" stopColor="#F59E0B" stopOpacity="0" />
               </linearGradient>
             </defs>
             <path d={sparkPath.area} fill="url(#sparkFill)" />
             <motion.path
               d={sparkPath.line}
               fill="none"
-              stroke="#2563EB"
+              stroke="#F59E0B"
               strokeWidth={2}
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -344,12 +344,14 @@ export default function LiveTrustPanel() {
 
 function Metric({
   icon,
+  accent,
   label,
   value,
   sub,
   live = false,
 }: {
   icon: React.ReactNode;
+  accent: string;
   label: string;
   value: string;
   sub: string;
@@ -358,7 +360,7 @@ function Metric({
   return (
     <div className="flex h-[84px] flex-col justify-between rounded-2xl border border-slate-200/70 bg-white/70 p-3">
       <div className="flex items-center gap-1.5 text-muted">
-        <span className="text-brand">{icon}</span>
+        <span className={accent}>{icon}</span>
         <span className="text-[0.68rem] font-medium">{label}</span>
       </div>
       <motion.p

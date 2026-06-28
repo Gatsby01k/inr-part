@@ -11,8 +11,8 @@ export default function Hero() {
       <div className="relative mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-2 lg:gap-14">
         {/* Left */}
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease: "easeOut" }}>
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-3.5 py-1.5 text-xs font-semibold tracking-wide text-blue-700">
-            <span className="h-1.5 w-1.5 rounded-full bg-blue-500" />
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-amber-200 bg-amber-50 px-3.5 py-1.5 text-xs font-semibold tracking-wide text-amber-700">
+            <span className="h-1.5 w-1.5 rounded-full bg-saffron" />
             Private Beta · Review Required
           </div>
 
@@ -38,13 +38,13 @@ export default function Hero() {
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <a
               href="#apply"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-brand px-6 py-3 text-sm font-semibold text-white shadow-btn transition hover:-translate-y-0.5 hover:bg-brandDeep"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-saffron to-saffronWarm px-6 py-3 text-sm font-semibold text-white shadow-btnSaffron transition hover:-translate-y-0.5 hover:brightness-105"
             >
               Apply for Review <ArrowRight className="h-4 w-4" />
             </a>
             <a
               href="#login"
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-brand/25 bg-white/80 px-6 py-3 text-sm font-semibold text-brand transition hover:-translate-y-0.5 hover:bg-blue-50"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-saffron/40 bg-white/80 px-6 py-3 text-sm font-semibold text-ink transition hover:-translate-y-0.5 hover:bg-amber-50"
             >
               Partner Login
             </a>

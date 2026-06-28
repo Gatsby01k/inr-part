@@ -38,13 +38,13 @@ export default function Header() {
           <div className="hidden items-center gap-2.5 sm:flex">
             <a
               href="#login"
-              className="rounded-full border border-brand/30 bg-white/70 px-4 py-2 text-sm font-semibold text-brand transition hover:bg-blue-50"
+              className="rounded-full border border-saffron/40 bg-white/70 px-4 py-2 text-sm font-semibold text-ink transition hover:bg-amber-50"
             >
               Partner Login
             </a>
             <a
               href="#apply"
-              className="rounded-full bg-brand px-4 py-2 text-sm font-semibold text-white shadow-btn transition hover:bg-brandDeep"
+              className="rounded-full bg-gradient-to-r from-saffron to-saffronWarm px-4 py-2 text-sm font-semibold text-white shadow-btnSaffron transition hover:brightness-105"
             >
               Apply for Review
             </a>
@@ -74,7 +74,7 @@ export default function Header() {
                     key={link.href}
                     href={link.href}
                     onClick={() => setOpen(false)}
-                    className="rounded-lg px-3 py-2.5 text-sm font-medium text-muted transition hover:bg-blue-50 hover:text-brand"
+                    className="rounded-lg px-3 py-2.5 text-sm font-medium text-muted transition hover:bg-amber-50 hover:text-brand"
                   >
                     {link.label}
                   </a>
@@ -83,14 +83,14 @@ export default function Header() {
                   <a
                     href="#login"
                     onClick={() => setOpen(false)}
-                    className="flex-1 rounded-full border border-brand/30 px-4 py-2.5 text-center text-sm font-semibold text-brand"
+                    className="flex-1 rounded-full border border-saffron/40 px-4 py-2.5 text-center text-sm font-semibold text-ink"
                   >
                     Partner Login
                   </a>
                   <a
                     href="#apply"
                     onClick={() => setOpen(false)}
-                    className="flex-1 rounded-full bg-brand px-4 py-2.5 text-center text-sm font-semibold text-white"
+                    className="flex-1 rounded-full bg-gradient-to-r from-saffron to-saffronWarm px-4 py-2.5 text-center text-sm font-semibold text-white"
                   >
                     Apply for Review
                   </a>

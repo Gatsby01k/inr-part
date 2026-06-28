@@ -22,10 +22,10 @@ export default function HowItWorks() {
             transition={{ duration: 0.45, delay: index * 0.06 }}
             className="glass card-hover relative overflow-hidden rounded-3xl p-6"
           >
-            <div className="absolute right-3 top-1 text-6xl font-black text-blue-600/[0.06]">
+            <div className="absolute right-3 top-1 text-6xl font-black text-amber-500/[0.08]">
               {String(index + 1).padStart(2, "0")}
             </div>
-            <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-2xl bg-blue-50 text-brand">
+            <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-2xl bg-amber-50 text-brand">
               <step.icon className="h-5 w-5" strokeWidth={2} />
             </div>
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand">Step {index + 1}</p>

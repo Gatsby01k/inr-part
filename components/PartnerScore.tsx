@@ -21,7 +21,7 @@ export default function PartnerScore() {
           transition={{ duration: 0.5 }}
           className="glass rounded-3xl p-7"
         >
-          <div className="relative mx-auto flex h-52 w-52 items-center justify-center rounded-full bg-blue-50">
+          <div className="relative mx-auto flex h-52 w-52 items-center justify-center rounded-full bg-amber-50">
             <motion.div
               initial={{ rotate: 0 }}
               animate={{ rotate: 360 }}
@@ -51,7 +51,7 @@ export default function PartnerScore() {
                 whileInView={{ width: "68%" }}
                 viewport={{ once: true }}
                 transition={{ duration: 1 }}
-                className="h-full rounded-full bg-gradient-to-r from-brand to-sky-400"
+                className="h-full rounded-full bg-gradient-to-r from-saffron to-saffronWarm"
               />
             </div>
           </div>

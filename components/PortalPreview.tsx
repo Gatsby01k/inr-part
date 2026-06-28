@@ -18,14 +18,14 @@ import { Section } from "./Section";
 type Tab = (typeof portalTabs)[number];
 
 const tone = {
-  brand: "text-brand",
-  electric: "text-sky-600",
+  brand: "text-emerald-600",
+  electric: "text-navy",
   amber: "text-amber-600",
 } as const;
 
 const badgeTone = {
   brand: "border-emerald-200 bg-emerald-50 text-emerald-700",
-  electric: "border-blue-200 bg-blue-50 text-blue-700",
+  electric: "border-slate-200 bg-slate-100 text-navy",
   amber: "border-amber-200 bg-amber-50 text-amber-700",
 } as const;
 
@@ -48,7 +48,7 @@ export default function PortalPreview() {
             <span className="h-2.5 w-2.5 rounded-full bg-emerald-300" />
             <span className="ml-3 text-xs text-muted">portal.inr-p2p · sample workspace</span>
           </div>
-          <span className="hidden rounded-full border border-blue-200 bg-blue-50 px-2.5 py-1 text-[0.7rem] font-semibold text-blue-700 sm:inline">
+          <span className="hidden rounded-full border border-amber-300 bg-amber-50 px-2.5 py-1 text-[0.7rem] font-semibold text-amber-700 sm:inline">
             Private Beta
           </span>
         </div>
@@ -137,7 +137,7 @@ function Workflows() {
       ))}
       <div className="flex items-center justify-between border-t border-slate-200/70 bg-white/70 px-4 py-3 text-xs text-muted">
         <span>Available capacity impacts how much you can take on next.</span>
-        <span className="font-semibold text-sky-600">Available: ₹3,20,000</span>
+        <span className="font-semibold text-emerald-600">Available: ₹3,20,000</span>
       </div>
     </div>
   );
@@ -151,7 +151,7 @@ function StatList({ rows, note }: { rows: StatRow[]; note: string }) {
       <div className="grid gap-3 sm:grid-cols-3">
         {rows.map((r) => (
           <div key={r.label} className="glass-2 rounded-2xl p-5">
-            <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-xl bg-blue-50 text-brand">
+            <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-xl bg-amber-50 text-brand">
               <r.icon className="h-4 w-4" />
             </div>
             <p className="text-2xl font-bold text-ink">{r.value}</p>
@@ -171,7 +171,7 @@ function ScoreTab() {
       <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
         {scoreSummary.map((s) => (
           <div key={s.label} className="glass-2 flex items-center gap-3 rounded-2xl p-4">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-brand">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-50 text-brand">
               <s.icon className="h-5 w-5" />
             </div>
             <div>
