@@ -407,3 +407,52 @@ export const trustChips: { label: string; icon: LucideIcon }[] = [
   { label: "Agreement-based reserve", icon: Wallet },
   { label: "Sample data", icon: ListChecks },
 ];
+
+/* ------------------------------------------------------------------ */
+/* Live trust panel — client-side simulated activity (mock only)       */
+/* ------------------------------------------------------------------ */
+
+export type LiveStatus = "Assigned" | "Processing" | "Awaiting Proof" | "Verified" | "Matched";
+
+export type LiveActivityRow = {
+  id: string;
+  amount: number; // INR, formatted in the UI with the Indian numbering system
+  status: LiveStatus;
+  elapsed: number; // seconds since the workflow appeared in the feed
+};
+
+// Linear, believable progression order used by the simulator.
+export const liveStatusOrder: LiveStatus[] = [
+  "Assigned",
+  "Processing",
+  "Awaiting Proof",
+  "Verified",
+  "Matched",
+];
+
+// Seed rows shown on first paint (mix of progress states for a real-console feel).
+export const liveSeedRows: LiveActivityRow[] = [
+  { id: "PPT-89521", amount: 245000, status: "Assigned", elapsed: 134 },
+  { id: "PPT-89234", amount: 175000, status: "Processing", elapsed: 407 },
+  { id: "PPT-89102", amount: 290000, status: "Awaiting Proof", elapsed: 221 },
+  { id: "PPT-88911", amount: 320000, status: "Verified", elapsed: 558 },
+  { id: "PPT-88765", amount: 480000, status: "Matched", elapsed: 663 },
+  { id: "PPT-88612", amount: 110000, status: "Matched", elapsed: 329 },
+];
+
+// Newly inserted workflows pull a plausible amount from this pool.
+export const liveAmountPool: number[] = [
+  95000, 110000, 130000, 150000, 175000, 185000, 215000, 245000, 275000, 290000, 305000, 320000, 360000,
+  390000, 410000, 460000, 480000, 540000,
+];
+
+// Next sequential ticket number (newer workflows carry higher numbers).
+export const liveNextId = 89522;
+
+// Starting values for the four headline metrics.
+export const liveSeedMetrics = {
+  partnersOnline: 142,
+  volumeCr: 4.62,
+  avgCompletionSec: 488,
+  successRate: 98.6,
+};
