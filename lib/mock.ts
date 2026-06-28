@@ -409,50 +409,172 @@ export const trustChips: { label: string; icon: LucideIcon }[] = [
 ];
 
 /* ------------------------------------------------------------------ */
-/* Live trust panel — client-side simulated activity (mock only)       */
+/* Live trust panel — deterministic, session-persisted mock engine     */
+/* (frontend-only: no backend, no API, no database)                    */
 /* ------------------------------------------------------------------ */
 
-export type LiveStatus = "Assigned" | "Processing" | "Awaiting Proof" | "Verified" | "Matched";
+export type LiveStatus = "Assigned" | "Processing" | "Awaiting Proof" | "Verified" | "Matched" | "Completed";
 
 export type LiveActivityRow = {
   id: string;
-  amount: number; // INR, formatted in the UI with the Indian numbering system
+  amount: number; // INR
   status: LiveStatus;
   elapsed: number; // seconds since the workflow appeared in the feed
 };
 
-// Linear, believable progression order used by the simulator.
+export type LiveMetrics = {
+  partnersOnline: number;
+  volumeCr: number;
+  avgCompletionSec: number;
+  successRate: number;
+};
+
+export type PersistedLiveState = {
+  day: string; // UTC YYYY-MM-DD this state belongs to
+  lastUpdatedAt: number; // epoch ms
+  nextId: number;
+  metrics: LiveMetrics;
+  rows: LiveActivityRow[];
+};
+
+// Realistic progression; rows finish at Completed and then rotate out.
 export const liveStatusOrder: LiveStatus[] = [
   "Assigned",
   "Processing",
   "Awaiting Proof",
   "Verified",
   "Matched",
+  "Completed",
 ];
 
-// Seed rows shown on first paint (mix of progress states for a real-console feel).
+// Deterministic seed rows for the very first paint (stable across SSR + hydration).
 export const liveSeedRows: LiveActivityRow[] = [
   { id: "PPT-89521", amount: 245000, status: "Assigned", elapsed: 134 },
   { id: "PPT-89234", amount: 175000, status: "Processing", elapsed: 407 },
   { id: "PPT-89102", amount: 290000, status: "Awaiting Proof", elapsed: 221 },
   { id: "PPT-88911", amount: 320000, status: "Verified", elapsed: 558 },
   { id: "PPT-88765", amount: 480000, status: "Matched", elapsed: 663 },
-  { id: "PPT-88612", amount: 110000, status: "Matched", elapsed: 329 },
 ];
 
-// Newly inserted workflows pull a plausible amount from this pool.
+// Larger pool so inserted workflows do not feel like a short repeating loop.
 export const liveAmountPool: number[] = [
-  95000, 110000, 130000, 150000, 175000, 185000, 215000, 245000, 275000, 290000, 305000, 320000, 360000,
-  390000, 410000, 460000, 480000, 540000,
+  85000, 95000, 110000, 125000, 140000, 150000, 165000, 175000, 185000, 205000, 215000, 235000, 245000, 265000,
+  275000, 290000, 305000, 320000, 345000, 360000, 380000, 410000, 435000, 460000, 480000, 510000, 540000, 575000,
 ];
 
-// Next sequential ticket number (newer workflows carry higher numbers).
 export const liveNextId = 89522;
 
-// Starting values for the four headline metrics.
-export const liveSeedMetrics = {
-  partnersOnline: 142,
-  volumeCr: 4.62,
-  avgCompletionSec: 488,
-  successRate: 98.6,
-};
+export const LIVE_STORAGE_KEY = "inr-p2p-live-state-v2";
+
+/* ---- pure math helpers (no Math.random, safe to call during render) ---- */
+
+const r1 = (n: number) => Math.round(n * 10) / 10;
+const r2 = (n: number) => Math.round(n * 100) / 100;
+const clampN = (n: number, lo: number, hi: number) => Math.min(hi, Math.max(lo, n));
+
+export function formatINR(n: number): string {
+  return "₹" + new Intl.NumberFormat("en-IN").format(Math.round(n));
+}
+
+export function formatCr(cr: number): string {
+  return `₹${cr.toFixed(2)} Cr`;
+}
+
+export function formatClock(totalSeconds: number): string {
+  const s = Math.max(0, Math.floor(totalSeconds));
+  const m = Math.floor(s / 60);
+  const ss = s % 60;
+  return `${String(m).padStart(2, "0")}m ${String(ss).padStart(2, "0")}s`;
+}
+
+// Deterministic PRNG (mulberry32) — stable output for a given numeric seed.
+export function seededRandom(seed: number): () => number {
+  let t = seed >>> 0;
+  return function () {
+    t += 0x6d2b79f5;
+    let x = Math.imul(t ^ (t >>> 15), 1 | t);
+    x ^= x + Math.imul(x ^ (x >>> 7), 61 | x);
+    return ((x ^ (x >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+function hashString(s: string): number {
+  let h = 2166136261;
+  for (let i = 0; i < s.length; i++) {
+    h ^= s.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return h >>> 0;
+}
+
+// UTC day key so server and client agree regardless of timezone (no hydration drift).
+export function utcDay(now: number = Date.now()): string {
+  return new Date(now).toISOString().slice(0, 10);
+}
+
+// Stable-for-the-day baseline metrics, derived from the date — not an obvious reset.
+export function getDailyLiveBaseline(day: string): LiveMetrics {
+  const rnd = seededRandom(hashString(day));
+  return {
+    partnersOnline: 132 + Math.floor(rnd() * 37), // 132–168
+    volumeCr: r2(4.2 + rnd() * (7.8 - 4.2)), // 4.20–7.80 Cr
+    avgCompletionSec: 470 + Math.floor(rnd() * 70), // ~07:50–09:00
+    successRate: r1(97.8 + rnd() * (99.1 - 97.8)), // 97.8–99.1%
+  };
+}
+
+/* ---- persistence (client-only; guarded for SSR) ---- */
+
+export function loadLiveState(): PersistedLiveState | null {
+  if (typeof window === "undefined") return null;
+  try {
+    const raw = window.localStorage.getItem(LIVE_STORAGE_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw) as PersistedLiveState;
+    if (!parsed || !parsed.metrics || !Array.isArray(parsed.rows)) return null;
+    return parsed;
+  } catch {
+    return null;
+  }
+}
+
+export function saveLiveState(state: PersistedLiveState): void {
+  if (typeof window === "undefined") return;
+  try {
+    window.localStorage.setItem(LIVE_STORAGE_KEY, JSON.stringify(state));
+  } catch {
+    /* ignore quota / privacy-mode errors */
+  }
+}
+
+// Build a fresh state for a given day from the deterministic baseline + seed rows.
+export function buildInitialLiveState(day: string, now: number = Date.now()): PersistedLiveState {
+  return {
+    day,
+    lastUpdatedAt: now,
+    nextId: liveNextId,
+    metrics: getDailyLiveBaseline(day),
+    rows: liveSeedRows.map((r) => ({ ...r })),
+  };
+}
+
+// Advance stored state by the elapsed wall-clock gap so values move forward after a refresh.
+// Returns a fresh state for a new day (so the volume baseline rolls over believably).
+export function advanceLiveState(state: PersistedLiveState, now: number = Date.now()): PersistedLiveState {
+  const day = utcDay(now);
+  if (state.day !== day) return buildInitialLiveState(day, now);
+
+  const deltaSec = clampN((now - state.lastUpdatedAt) / 1000, 0, 1800); // cap at 30 min
+  const base = getDailyLiveBaseline(day);
+
+  // Volume only ever creeps up, gently, and stays near the day's believable band.
+  const volumeCr = r2(clampN(state.metrics.volumeCr + (deltaSec / 60) * 0.014, base.volumeCr, base.volumeCr + 3.2));
+
+  const rows = state.rows.map((row) =>
+    row.status === "Completed" || row.status === "Matched"
+      ? row
+      : { ...row, elapsed: clampN(row.elapsed + Math.floor(deltaSec), 0, 5400) },
+  );
+
+  return { ...state, day, lastUpdatedAt: now, metrics: { ...state.metrics, volumeCr }, rows };
+}

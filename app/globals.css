@@ -14,56 +14,48 @@ body {
   -webkit-font-smoothing: antialiased;
   background-color: #f5f8ff;
   background-image:
-    radial-gradient(1100px 560px at 88% -8%, rgba(56, 189, 248, 0.16), transparent 60%),
-    radial-gradient(960px 560px at -5% 0%, rgba(37, 99, 235, 0.10), transparent 55%),
-    linear-gradient(180deg, #f5f8ff 0%, #eef4ff 45%, #f5f8ff 100%);
+    radial-gradient(1000px 520px at 90% -10%, rgba(56, 189, 248, 0.10), transparent 60%),
+    radial-gradient(900px 520px at -5% 0%, rgba(37, 99, 235, 0.07), transparent 55%),
+    linear-gradient(180deg, #f7faff 0%, #eef4ff 50%, #f7faff 100%);
   background-attachment: fixed;
 }
 
-::selection { background: rgba(37, 99, 235, 0.18); color: #0f172a; }
+::selection { background: rgba(37, 99, 235, 0.16); color: #0f172a; }
 
-/* Apple-style liquid glass — white translucent fill, soft blur, gentle blue shadow */
+/* Apple-style liquid glass — white translucent fill, soft blur, soft border */
 .glass {
-  background: rgba(255, 255, 255, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  box-shadow: 0 20px 70px rgba(37, 99, 235, 0.1);
-  backdrop-filter: blur(20px) saturate(140%);
-  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: 0 12px 36px rgba(15, 23, 42, 0.06);
+  backdrop-filter: blur(18px) saturate(135%);
+  -webkit-backdrop-filter: blur(18px) saturate(135%);
 }
 
 /* Lighter glass for nested/secondary panels */
 .glass-2 {
-  background: rgba(255, 255, 255, 0.55);
-  border: 1px solid rgba(255, 255, 255, 0.55);
-  box-shadow: 0 10px 40px rgba(37, 99, 235, 0.08);
-  backdrop-filter: blur(14px) saturate(135%);
-  -webkit-backdrop-filter: blur(14px) saturate(135%);
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  box-shadow: 0 6px 22px rgba(15, 23, 42, 0.05);
+  backdrop-filter: blur(12px) saturate(130%);
+  -webkit-backdrop-filter: blur(12px) saturate(130%);
 }
 
-/* The main dashboard / Live Trust Panel — slightly stronger material + inner highlight */
+/* The main dashboard / Live Trust Panel — clean app surface, gentle lift */
 .glass-panel {
   position: relative;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.68));
-  border: 1px solid rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(226, 232, 240, 0.95);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.9),
-    0 30px 80px rgba(37, 99, 235, 0.14);
-  backdrop-filter: blur(24px) saturate(150%);
-  -webkit-backdrop-filter: blur(24px) saturate(150%);
-}
-.glass-panel::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.6), transparent 24%);
-  pointer-events: none;
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    0 18px 44px rgba(15, 23, 42, 0.08);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
 }
 
-.card-hover { transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease; }
+.card-hover { transition: transform .25s ease, box-shadow .25s ease; }
 .card-hover:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 24px 60px rgba(37, 99, 235, 0.16);
+  transform: translateY(-3px);
+  box-shadow: 0 16px 36px rgba(15, 23, 42, 0.1);
 }
 
 .text-gradient {

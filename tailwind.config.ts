@@ -15,10 +15,10 @@ const config: Config = {
         canvas2: "#EEF4FF", // alt background
       },
       boxShadow: {
-        glass: "0 20px 70px rgba(37, 99, 235, 0.10)",
-        glassSoft: "0 10px 40px rgba(37, 99, 235, 0.08)",
-        lift: "0 24px 60px rgba(37, 99, 235, 0.16)",
-        btn: "0 10px 24px rgba(37, 99, 235, 0.28)",
+        glass: "0 12px 36px rgba(15, 23, 42, 0.06)",
+        glassSoft: "0 6px 22px rgba(15, 23, 42, 0.05)",
+        lift: "0 16px 36px rgba(37, 99, 235, 0.12)",
+        btn: "0 8px 18px rgba(37, 99, 235, 0.22)",
       },
       backgroundImage: {
         "blue-sheen": "linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0))",
