@@ -1,13 +1,39 @@
-import type { ReactNode } from "react";
+"use client";
 
-export function Section({ id, eyebrow, title, copy, children }: { id?: string; eyebrow?: string; title: string; copy?: string; children: ReactNode }) {
+import type { ReactNode } from "react";
+import { motion } from "framer-motion";
+
+export function Section({
+  id,
+  eyebrow,
+  title,
+  copy,
+  align = "center",
+  children,
+}: {
+  id?: string;
+  eyebrow?: string;
+  title: string;
+  copy?: string;
+  align?: "center" | "left";
+  children: ReactNode;
+}) {
+  const aligned = align === "center";
   return (
     <section id={id} className="relative mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
-      <div className="mx-auto mb-10 max-w-3xl text-center">
-        {eyebrow ? <p className="mb-3 text-sm font-semibold uppercase tracking-[0.3em] text-cyan-300/80">{eyebrow}</p> : null}
-        <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-5xl">{title}</h2>
-        {copy ? <p className="mt-5 text-base leading-8 text-slate-300 sm:text-lg">{copy}</p> : null}
-      </div>
+      <motion.div
+        initial={{ opacity: 0, y: 18 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-90px" }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        className={`mb-12 max-w-3xl ${aligned ? "mx-auto text-center" : "text-left"}`}
+      >
+        {eyebrow ? (
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.32em] text-brandSoft">{eyebrow}</p>
+        ) : null}
+        <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-[2.7rem] sm:leading-[1.1]">{title}</h2>
+        {copy ? <p className="mt-5 text-base leading-8 text-slate-300/90 sm:text-lg">{copy}</p> : null}
+      </motion.div>
       {children}
     </section>
   );
