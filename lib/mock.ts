@@ -229,7 +229,7 @@ export const profileRows = [
   { label: "Review status", value: "Approved" },
   { label: "Reserve status", value: "Agreement-based" },
   { label: "Communication", value: "Reliable · same-day" },
-  { label: "Mode", value: "Private Beta" },
+  { label: "Access", value: "Review-based" },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -394,7 +394,7 @@ export const faq = [
   },
   {
     q: "What does the portal track?",
-    a: "Operating profile, workflow status, proof history, reconciliation status, review state and partner score — shown here with sample frontend data in this demo.",
+    a: "Your operating profile, workflow status, proof history, reconciliation status, review state and partner score — all in one private workspace.",
   },
   {
     q: "What happens after I apply?",
@@ -424,7 +424,7 @@ export const trustChips: { label: string; icon: LucideIcon }[] = [
   { label: "Review required", icon: ClipboardCheck },
   { label: "Approved partners only", icon: BadgeCheck },
   { label: "Agreement-based reserve", icon: Wallet },
-  { label: "Sample data", icon: ListChecks },
+  { label: "Invite code required", icon: ListChecks },
 ];
 
 /* ------------------------------------------------------------------ */

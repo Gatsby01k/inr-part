@@ -14,9 +14,8 @@ export default function Footer() {
               <span className="font-semibold text-ink">INR P2P Partner Portal</span>
             </div>
             <p className="mt-5 max-w-md text-sm leading-7 text-muted">
-              A private partner portal for approved INR P2P settlement operators. Access is review-based, and any
-              operating reserve or limit is assigned only after review and agreement. This site is a frontend demo using
-              sample data.
+              INR P2P Partner Portal is a private partner operations portal. Access is subject to review. This public
+              website does not collect deposits or payment details.
             </p>
           </div>
           <div className="grid gap-8 sm:grid-cols-3">
@@ -37,8 +36,8 @@ export default function Footer() {
           </div>
         </div>
         <div className="mt-10 flex flex-col gap-2 border-t border-slate-200 pt-6 text-xs text-muted sm:flex-row sm:items-center sm:justify-between">
-          <span>© 2026 INR P2P Partner Portal · Private beta partner website.</span>
-          <span>Review required · Approved partners only · Sample data</span>
+          <span>© 2026 INR P2P Partner Portal · Private partner network.</span>
+          <span>Review required · Approved partners only · Invite code required</span>
         </div>
       </div>
     </footer>

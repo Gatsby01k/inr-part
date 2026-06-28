@@ -31,7 +31,7 @@ export default function ReserveSection() {
             approved. It is never requested, unlocked or collected on this website.
           </p>
           <div className="mt-6 inline-flex w-fit items-center gap-2 rounded-xl border border-amber-200 bg-amber-50 px-4 py-2.5 text-sm text-amber-800">
-            Reserve Status (demo): <span className="font-semibold text-amber-700">Agreement-based</span>
+            Reserve Status: <span className="font-semibold text-amber-700">Agreement-based</span>
           </div>
         </motion.div>
 

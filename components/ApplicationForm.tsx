@@ -59,8 +59,8 @@ export default function ApplicationForm() {
               </div>
               <h3 className="text-2xl font-semibold text-ink sm:text-3xl">Application received</h3>
               <p className="mt-3 max-w-md leading-7 text-muted">
-                Your partner profile has been submitted for review. Approved partners receive portal access after review
-                and agreement.
+                Your partner profile has been submitted for review. If there is a fit, operating profile, agreement terms
+                and reserve requirements may be shared separately.
               </p>
               <button
                 type="button"
@@ -184,6 +184,7 @@ export default function ApplicationForm() {
               >
                 Enter Partner Portal
               </button>
+              <p className="text-center text-xs text-muted">Approved partners only · Invite code required</p>
             </div>
           </div>
 

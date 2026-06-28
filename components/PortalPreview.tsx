@@ -36,8 +36,8 @@ export default function PortalPreview() {
     <Section
       id="portal"
       eyebrow="Portal preview"
-      title="A real partner dashboard, not generic SaaS cards"
-      copy="Switch between tabs to see what an approved partner tracks. Interactive demo using sample data only — no backend, database or auth."
+      title="One private workspace for your partner operations"
+      copy="Switch between tabs to see what an approved partner tracks — operating profile, workflows, proof history, reconciliation status and partner score."
     >
       <div className="glass overflow-hidden rounded-[1.75rem] p-3 sm:p-5 lg:p-6">
         {/* window chrome */}
@@ -46,7 +46,7 @@ export default function PortalPreview() {
             <span className="h-2.5 w-2.5 rounded-full bg-rose-300" />
             <span className="h-2.5 w-2.5 rounded-full bg-amber-300" />
             <span className="h-2.5 w-2.5 rounded-full bg-emerald-300" />
-            <span className="ml-3 text-xs text-muted">portal.inr-p2p · sample workspace</span>
+            <span className="ml-3 text-xs text-muted">portal.inr-p2p · partner workspace</span>
           </div>
           <span className="hidden rounded-full border border-amber-300 bg-amber-50 px-2.5 py-1 text-[0.7rem] font-semibold text-amber-700 sm:inline">
             Private Beta

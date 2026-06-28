@@ -217,8 +217,8 @@ export default function LiveTrustPanel() {
             <Activity className="h-5 w-5" strokeWidth={2.2} />
           </span>
           <div>
-            <p className="text-sm font-semibold text-ink">Partner Dashboard</p>
-            <p className="text-[0.7rem] text-muted">Demo dashboard · Sample data</p>
+            <p className="text-sm font-semibold text-ink">Live Trust Panel</p>
+            <p className="text-[0.7rem] text-muted">Partner operations panel</p>
           </div>
         </div>
         <span className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-1 text-[0.7rem] font-bold uppercase tracking-wide text-emerald-700">
