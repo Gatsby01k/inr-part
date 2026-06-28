@@ -340,6 +340,25 @@ export const portalGoals = [
   "Private network access",
 ];
 
+// "What happens after you apply" — onboarding timeline.
+export const onboardingSteps = [
+  "Profile submitted",
+  "Review in progress",
+  "Operating fit assessment",
+  "Agreement and reserve terms if applicable",
+  "Portal access for approved partners",
+];
+
+// "What this form never asks for" — compliance / trust block.
+export const neverAsks = [
+  "Bank account details",
+  "Personal account details",
+  "UPI details",
+  "Card details",
+  "Deposit amount",
+  "Payment information",
+];
+
 /* ------------------------------------------------------------------ */
 /* FAQ                                                                 */
 /* ------------------------------------------------------------------ */
